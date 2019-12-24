@@ -20,7 +20,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    while True:  
+    while True:
         try:
             city = input("\nWould you like to see data for Chicago, New York City, or Washington?\n\n").lower()
             if city in cities:
@@ -31,7 +31,7 @@ def get_filters():
         except:
             print('Your city entry caused an error, exiting program!!\n\n')
             break
-            
+
     while True:
         try:
             month_or_day = input("\nWould you like to filter the data by month, day, or not at all? Enter \'None\' for not at all!\n\n").lower()
@@ -42,7 +42,7 @@ def get_filters():
         except:
             print('Your filter entry caused an error, exiting program!!\n\n')
             break
-# TO DO: get user input for month (all, january, february, ... , june)            
+# TO DO: get user input for month (all, january, february, ... , june)
     if month_or_day == filters[0]:
         day = 'all'
         while True:
@@ -59,17 +59,17 @@ def get_filters():
 # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     elif month_or_day == filters[1]:
         month = 'all'
-        while True:  
+        while True:
             try:
                 day = input("\nWhich day - Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday? Enter the day fully!\n\n").lower()
-                if day in days:                  
+                if day in days:
                     break
                 else:
                     print('\nYou have entered invalid day, please try again!\n\n')
             except:
                 print('Your day entry caused an error, exiting program!!\n\n')
                 break
-                
+
     else:
         month = 'all'
         day = 'all'
@@ -91,7 +91,7 @@ def load_data(city, month, day):
        # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
 
-    # convert the Start Time column to datetime
+    # convert the Start Time column to datetime, this formats the Start Time column to enable easy extraction of month & weekday name
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # extract month and day of week from Start Time to create new columns
@@ -122,9 +122,9 @@ def time_stats(df):
 
     # TO DO: display the most common month
     popular_month = df['month'].mode()[0]
-    
-    print('Most Common Month:', months[popular_month].title())    
-    
+
+    print('Most Common Month:', months[popular_month].title())
+
     # TO DO: display the most common day of week
     popular_day = df['day_of_week'].mode()[0]
     print('Most Common Day:', popular_day)
@@ -155,13 +155,13 @@ def station_stats(df):
     # The most commonly used end station using mode function
     popular_end_station = df['End Station'].mode()[0]
     print('Most Commonly Used End Station:', popular_end_station)
-    
+
     # TO DO: display most frequent combination of start station and end station trip
     df['SS_ES'] = df['Start Station'] + ',' + df['End Station']
     popular_SS_ES = df['SS_ES'].mode()[0]
     popular_SS = popular_SS_ES.split(',')[0]
     popular_ES = popular_SS_ES.split(',')[1]
-    
+
     print('\nMost Frequent Combination of Start Station and End Station Trip:')
     print('Start Station:',popular_SS)
     print('End Station:',popular_ES)
@@ -191,7 +191,7 @@ def user_stats(df):
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-    
+
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
     print('The counts of different user types: \n',user_types)
@@ -209,9 +209,9 @@ def user_stats(df):
         print('\nThe earliest year of birth: ',earliest_yob)
         print('The most recent year of birth: ',most_recent_yob)
         print('The most common year of birth: ',most_common_yob)
-    else: 
+    else:
         print('No Birth Year Data is available!\n')
-        
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -233,12 +233,12 @@ def main():
                     print(df.iloc[i:i+5,0:9])
                 else:
                     break
-                display_data = input('\nWould you like to see 5 more rows of data? Type yes or no!\n')      
+                display_data = input('\nWould you like to see 5 more rows of data? Type yes or no!\n')
         except:
             print('Your entry caused an error, exiting the program')
             break
-            
-        """This section will ask the user if they want to restart the whole program!"""    
+
+        """This section will ask the user if they want to restart the whole program!"""
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
