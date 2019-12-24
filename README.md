@@ -13,5 +13,5 @@ washington.csv
 new_york_city.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+The main credits will go to Udacity's course project template which served a great deal in making the project easier.
 
