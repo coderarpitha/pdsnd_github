@@ -5,7 +5,7 @@
 Bikeshare Data Analysis for 3 major cities
 
 ### Description
-Describe what your project is about and what it does
+Bike sharing data analysis for 3 major cities - Chicago, Washington D.C., New York City using filters like Month, Day of the week or both. 
 
 ### Files used
 Include the files used
